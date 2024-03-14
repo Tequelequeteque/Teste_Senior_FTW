@@ -1,22 +1,13 @@
 from django.db import models
 
 class Tasks(models.Model):
-
-    STATUS_CHOICES = (
-        ('to_do', 'A fazer'),
-        ('in_progress', 'Em progresso'),
-        ('done', 'Concluído'),
+    STATUS = (
+        ('todo', 'To Do'),
+        ('in_progress', 'In Progress'),
+        ('done', 'Done'),
     )
-
-    PRIORITY_CHOICES = (
-        ('urgent', 'Urgente'),
-        ('high', 'Alta'),
-        ('medium', 'Média'),
-        ('low', 'Baixa'),
-    )
-
     title = models.CharField(max_length=100)
     description = models.TextField(null=True)
-    status = models.CharField(max_length=12, choices=STATUS_CHOICES, default='Em progresso')
-    priority = models.CharField(max_length=12, choices=PRIORITY_CHOICES, default='Média')
-    created_at = models.DateTimeField(auto_now_add=True)
+    status = models.CharField(max_length=12, choices=STATUS, default='fazendo')
+    priority = models.IntegerField()
+    created_at = models.DateTimeField(auto_now_add_date=True)
