@@ -13,9 +13,6 @@ class TasksTests(APITestCase):
         User.objects.create_superuser(username=user, password=password)
         credentials = base64.b64encode(f'{user}:{password}'.encode('utf-8'))
         self.client.credentials(HTTP_AUTHORIZATION='Basic {}'.format(credentials.decode('utf-8')))
-    
-    def setDown(self) -> None:
-        Tasks.delete()
 
     def test_create_task(self):
         """
